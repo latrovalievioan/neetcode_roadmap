@@ -1,13 +1,20 @@
 // https://leetcode.com/problems/valid-anagram/
-//
-// TODO: find a more efficient solution
 
-function isAnagram(s: string, t: string): boolean {
-  if (s.length !== t.length) return false
+const isAnagram = (s: string, t: string): boolean => {
+  if (s.length !== t.length) return false;
 
-  for (let i = 0; i < s.length; i++) {
-    if (s.split(s[i]).length !== t.split(s[i]).length) return false
+  const alphabet = new Uint32Array(26);
+
+  const xs = [...s, ...t];
+
+  for (let i = 0, j = xs.length - 1; i < j; i++, j--) {
+    const leftCharCodeIndex = xs[i].charCodeAt(0) - 97
+    const rightCharCodeIndex = xs[j].charCodeAt(0) - 97
+
+    alphabet[leftCharCodeIndex]++
+    alphabet[rightCharCodeIndex]--
   }
+  return alphabet.every(v => v === 0)
+}
 
-  return true
-};
+console.log(isAnagram('anagram', 'nagaram'))
