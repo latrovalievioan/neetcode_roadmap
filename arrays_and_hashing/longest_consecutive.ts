@@ -25,5 +25,4 @@ function longestConsecutive(nums: number[]): number {
 
 
 const test = [100, 4, 200, 1, 3, 2];
-console.log(longestConsecutive(test))
-
+console.log(longestConsecutive(test));
