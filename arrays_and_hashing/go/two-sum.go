@@ -9,6 +9,7 @@ func main() {
 	nums := []int{2, 7, 11, 15}
 	target := 9
 	fmt.Println(twoSum(nums, target))
+	fmt.Println(twoSum2(nums, target))
 }
 
 func twoSum(nums []int, target int) []int {
@@ -36,3 +37,21 @@ func includes(nums []int, value int, omit int) int {
 }
 
 ////////
+
+func twoSum2(nums []int, target int) []int {
+	m := make(map[int]int)
+
+	for i := range nums {
+		m[nums[i]] = i
+	}
+
+	for i := range nums {
+		value, ok := m[target-nums[i]]
+
+		if ok && value != i {
+			return []int{i, value}
+		}
+	}
+
+	return []int{}
+}
