@@ -10,6 +10,7 @@ func main() {
 	target := 9
 	fmt.Println(twoSum(nums, target))
 	fmt.Println(twoSum2(nums, target))
+	fmt.Println(twoSum3(nums, target))
 }
 
 func twoSum(nums []int, target int) []int {
@@ -53,5 +54,22 @@ func twoSum2(nums []int, target int) []int {
 		}
 	}
 
+	return []int{}
+}
+
+// ///////
+func twoSum3(nums []int, target int) []int {
+	m := make(map[int]int)
+
+	for i := range nums {
+
+		value, ok := m[target-nums[i]]
+
+		if ok && value != i {
+			return []int{i, value}
+		}
+
+		m[nums[i]] = i
+	}
 	return []int{}
 }
